@@ -8,3 +8,18 @@ services:
       - 3000:3000
     volumes:
       - .:/app/
+  server:
+    build:
+      context: ./mock
+    ports:
+      - 8080:8080
+    depends_on:
+      - gripmock
+  gripmock:
+    image: tkpd/gripmock:v1.11-beta
+    command: --stub=/stub /proto/helloworld.proto
+    volumes:
+      - ./proto:/proto
+      - ./mock/stub:/stub
+    ports:
+      - 4771:4771
