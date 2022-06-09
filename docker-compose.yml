@@ -3,6 +3,7 @@ services:
   front:
     build:
       context: .
+    entrypoint: ./scripts/docker-entrypoint.sh
     command: yarn run dev
     ports:
       - 3000:3000
